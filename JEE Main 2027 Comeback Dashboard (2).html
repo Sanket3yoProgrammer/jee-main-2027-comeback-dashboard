@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JEE Main 2027 — 75-Day Comeback Neo-Brutalist Tracker</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js for Mock Test Progress Charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Space Grotesk & JetBrains Mono -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@500;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- PWA Meta Tags & Inline Web App Manifest -->
+  <meta name="theme-color" content="#0D0F12">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="JEE 2027 Comeback">
+  
+  <script>
+    // Dynamically Inject PWA Web App Manifest
+    (function injectManifest() {
+      const iconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="%23000"><rect width="512" height="512" fill="%23FFE600"/><path d="M160 120h192v40H280v232h-48V160h-72v-40z" fill="%23000"/><circle cx="380" cy="140" r="30" fill="%23FF007A"/></svg>`;
+      const iconUrl = 'data:image/svg+xml;utf8,' + iconSvg;
+      
+      const manifest = {
+        name: "JEE Main 2027 — 75-Day Comeback Tracker",
+        short_name: "JEE 2027 Tracker",
+        description: "Professional NTA Paper 1 75-Day Schedule & Priority PCM Checklists Tracker",
+        start_url: "./",
+        display: "standalone",
+        background_color: "#0D0F12",
+        theme_color: "#0D0F12",
+        icons: [
+          { src: iconUrl, sizes: "192x192", type: "image/svg+xml", purpose: "any maskable" },
+          { src: iconUrl, sizes: "512x512", type: "image/svg+xml", purpose: "any maskable" }
+        ]
+      };
+      const stringManifest = JSON.stringify(manifest);
+      const blob = new Blob([stringManifest], {type: 'application/json'});
+      const manifestURL = URL.createObjectURL(blob);
+      const link = document.createElement('link');
+      link.rel = 'manifest';
+      link.href = manifestURL;
+      document.head.appendChild(link);
+    })();
+  </script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            rawBg: '#12161F',
+            cardBg: '#1E2330',
+            brutalYellow: '#FFE600',
+            brutalCyan: '#00F0FF',
+            brutalGreen: '#00FF66',
+            brutalPink: '#FF007A',
+            brutalOrange: '#FF6B00',
+            brutalBorder: '#FFFFFF'
+          },
+          fontFamily: {
+            sans: ['Space Grotesk', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #12161F;
+      color: #FFFFFF;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    /* Neo-Brutalist Sharp Styling Tokens */
+    .brutal-card {
+      background: #1E2330;
+      border: 3px solid #FFFFFF;
+      box-shadow: 4px 4px 0px #FFFFFF;
+      transition: all 0.15s ease-in-out;
+    }
+    .brutal-card:hover {
+      box-shadow: 6px 6px 0px #00F0FF;
+    }
+
+    /* Interactive Accordion & Collapsible Details */
+    details summary {
+      cursor: pointer;
+      list-style: none;
+    }
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .brutal-btn {
+      border: 2px solid #FFFFFF;
+      box-shadow: 3px 3px 0px #FFFFFF;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.15s ease;
+    }
+    .brutal-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0px #00F0FF;
+    }
+    .brutal-btn:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0px #FFFFFF;
+    }
+
+    .brutal-input {
+      background: #12161F;
+      border: 2px solid #FFFFFF;
+      color: #FFFFFF;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .brutal-input:focus {
+      outline: none;
+      border-color: #00F0FF;
+      box-shadow: 3px 3px 0px #00F0FF;
+    }
+
+    /* Custom Checkbox */
+    input[type="checkbox"] {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #FFFFFF;
+      background: #12161F;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+    }
+    input[type="checkbox"]:checked {
+      background: #FFE600;
+      border-color: #FFE600;
+    }
+    input[type="checkbox"]:checked::after {
+      content: '✓';
+      position: absolute;
+      color: #000000;
+      font-weight: 900;
+      font-size: 13px;
+      top: -2px;
+      left: 2px;
+    }
+
+    /* Strength Rating Pips */
+    .strength-pip {
+      width: 12px;
+      height: 12px;
+      border: 1px solid #FFFFFF;
+      cursor: pointer;
+      display: inline-block;
+      transition: transform 0.1s ease;
+    }
+    .strength-pip:hover {
+      transform: scale(1.25);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-40 bg-[#12161F]/95 backdrop-blur-md border-b-2 border-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap justify-between items-center gap-3">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded bg-brutalYellow text-black border-2 border-white flex items-center justify-center font-black text-lg shadow-[2px_2px_0px_#FFF]">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <div>
+          <h1 class="text-sm sm:text-base font-black tracking-tight text-white flex items-center gap-2">
+            JEE MAIN 2027 <span class="text-[10px] px-2 py-0.5 bg-brutalCyan text-black border border-white font-mono font-bold">75-DAY COMEBACK</span>
+          </h1>
+          <p class="text-[10px] text-slate-300 font-mono">Official NTA Alignment • Session 1 Target</p>
+        </div>
+      </div>
+
+      <!-- Live Countdown Badge -->
+      <div class="flex items-center space-x-2 bg-[#1E2330] px-3 py-1 border-2 border-white font-mono text-xs shadow-[2px_2px_0px_#FFF]">
+        <i class="fa-regular fa-clock text-brutalYellow"></i>
+        <span id="timer-display" class="text-brutalYellow font-black tracking-wider">00d 00h 00m 00s</span>
+      </div>
+
+      <!-- Top Settings Menu Dropdown -->
+      <div class="relative group">
+        <button class="brutal-btn px-3 py-1 bg-slate-800 text-white text-xs flex items-center gap-1.5">
+          <i class="fa-solid fa-ellipsis-vertical"></i> <span>Options</span>
+        </button>
+        <div class="absolute right-0 top-full mt-1 w-48 bg-[#1E2330] border-2 border-white shadow-[4px_4px_0px_#FFF] hidden group-hover:block z-50 py-1 font-mono text-xs">
+          <button onclick="exportData()" class="w-full text-left px-3 py-1.5 hover:bg-brutalCyan hover:text-black font-bold border-b border-slate-700">
+            <i class="fa-solid fa-download mr-1.5"></i> Export Backup (.json)
+          </button>
+          <button onclick="triggerImport()" class="w-full text-left px-3 py-1.5 hover:bg-brutalCyan hover:text-black font-bold border-b border-slate-700">
+            <i class="fa-solid fa-upload mr-1.5"></i> Restore Backup
+          </button>
+          <button onclick="reloadPreloadedData()" class="w-full text-left px-3 py-1.5 hover:bg-brutalPink hover:text-white font-bold text-brutalPink">
+            <i class="fa-solid fa-rotate-right mr-1.5"></i> Refill / Reset App
+          </button>
+          <input type="file" id="import-file" class="hidden" onchange="importData(event)">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Strategy Guide Accordion Banner -->
+  <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+    <details class="brutal-card p-3 bg-[#1A1F2C]">
+      <summary class="flex justify-between items-center text-xs font-mono font-bold text-brutalYellow uppercase tracking-wider">
+        <span><i class="fa-solid fa-compass mr-1.5"></i> Execution Protocol &amp; Strategy Guide</span>
+        <span class="text-[10px] text-slate-300 bg-black px-2 py-0.5 border border-white">Click to Expand</span>
+      </summary>
+      <div class="mt-3 pt-3 border-t border-slate-700 grid grid-cols-1 md:grid-cols-3 gap-3 text-xs font-mono text-slate-200">
+        <div class="bg-[#12161F] p-2.5 border border-slate-600">
+          <b class="text-brutalCyan block mb-1">1. Daily Split Engine</b>
+          <p class="text-[11px] leading-tight text-slate-300">Dedicate two main blocks (3.5h each) to deep topic coverage &amp; PYQs. Use the 30m slot for short notes revision of Subject 3.</p>
+        </div>
+        <div class="bg-[#12161F] p-2.5 border border-slate-600">
+          <b class="text-brutalYellow block mb-1">2. Test Day Protocol</b>
+          <p class="text-[11px] leading-tight text-slate-300">Mock tests never halt progress. Tests take 3 hours, error logging takes 1.5 hours, and 2 hours remain for weak-area recovery.</p>
+        </div>
+        <div class="bg-[#12161F] p-2.5 border border-slate-600">
+          <b class="text-brutalGreen block mb-1">3. Active PYQ Standard</b>
+          <p class="text-[11px] leading-tight text-slate-300">Watching lectures alone is insufficient. Solve 25–30 PYQs per chapter. Mark missed questions into Level 1/2/3 error logs.</p>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Main Viewport -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-4">
+
+    <!-- Navigation Tabs -->
+    <div class="flex items-center space-x-2 border-b-2 border-white pb-3 overflow-x-auto">
+      <button onclick="switchTab('tab-planner')" id="btn-tab-planner" class="brutal-btn px-4 py-2 text-xs bg-brutalYellow text-black">
+        <i class="fa-solid fa-calendar-days mr-1.5"></i> 75-Day Schedule
+      </button>
+      <button onclick="switchTab('tab-checklist')" id="btn-tab-checklist" class="brutal-btn px-4 py-2 text-xs bg-slate-800 text-white">
+        <i class="fa-solid fa-list-check mr-1.5"></i> PCM Checklists
+      </button>
+      <button onclick="switchTab('tab-mocks')" id="btn-tab-mocks" class="brutal-btn px-4 py-2 text-xs bg-slate-800 text-white">
+        <i class="fa-solid fa-chart-line mr-1.5"></i> Mock Tests &amp; Log
+      </button>
+      <button onclick="switchTab('tab-backlogs')" id="btn-tab-backlogs" class="brutal-btn px-4 py-2 text-xs bg-slate-800 text-white">
+        <i class="fa-solid fa-vault mr-1.5"></i> Backlog Vault
+      </button>
+    </div>
+
+    <!-- TAB 1: 75-DAY PLANNER -->
+    <div id="tab-planner" class="tab-content space-y-4">
+      <div class="brutal-card p-3 flex flex-wrap items-center justify-between gap-3 bg-[#1A1F2C]">
+        <div class="flex items-center space-x-1.5 overflow-x-auto">
+          <span class="text-xs font-mono font-bold text-slate-300 mr-1 uppercase">Phase:</span>
+          <button onclick="filterSchedule('all')" class="brutal-btn px-2.5 py-1 text-[11px] bg-brutalCyan text-black">All</button>
+          <button onclick="filterSchedule('Phase 1')" class="brutal-btn px-2.5 py-1 text-[11px] bg-slate-800 text-white">Ph 1</button>
+          <button onclick="filterSchedule('Phase 2')" class="brutal-btn px-2.5 py-1 text-[11px] bg-slate-800 text-white">Ph 2</button>
+          <button onclick="filterSchedule('Phase 3')" class="brutal-btn px-2.5 py-1 text-[11px] bg-slate-800 text-white">Ph 3</button>
+          <button onclick="filterSchedule('Phase 4')" class="brutal-btn px-2.5 py-1 text-[11px] bg-slate-800 text-white">Ph 4</button>
+          <button onclick="filterSchedule('Phase 5')" class="brutal-btn px-2.5 py-1 text-[11px] bg-slate-800 text-white">Ph 5</button>
+        </div>
+        <div class="flex items-center space-x-2">
+          <select id="schedule-status-filter" onchange="renderSchedule()" class="brutal-input px-2 py-1 text-xs">
+            <option value="all">All Days</option>
+            <option value="pending">Pending</option>
+            <option value="completed">Completed</option>
+            <option value="test">Test Days</option>
+          </select>
+          <input type="text" id="schedule-search" oninput="renderSchedule()" placeholder="Search..." class="brutal-input px-2 py-1 text-xs w-32 sm:w-40">
+        </div>
+      </div>
+
+      <div id="schedule-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- JS Rendered -->
+      </div>
+    </div>
+
+    <!-- TAB 2: PCM CHECKLISTS -->
+    <div id="tab-checklist" class="tab-content hidden space-y-4">
+      <div class="brutal-card p-3 flex flex-wrap items-center justify-between gap-3 bg-[#1A1F2C]">
+        <div class="flex items-center space-x-2">
+          <button onclick="switchSubject('physics')" id="subj-btn-physics" class="subj-btn brutal-btn px-3 py-1 text-xs bg-brutalCyan text-black">Physics</button>
+          <button onclick="switchSubject('chemistry')" id="subj-btn-chemistry" class="subj-btn brutal-btn px-3 py-1 text-xs bg-slate-800 text-white">Chemistry</button>
+          <button onclick="switchSubject('maths')" id="subj-btn-maths" class="subj-btn brutal-btn px-3 py-1 text-xs bg-slate-800 text-white">Mathematics</button>
+        </div>
+        <div class="flex items-center space-x-2">
+          <select id="checklist-priority-filter" onchange="renderChecklist()" class="brutal-input px-2 py-1 text-xs">
+            <option value="all">All Priorities</option>
+            <option value="Priority A">Priority A (~70% Yield)</option>
+            <option value="Priority B">Priority B (~20% Yield)</option>
+            <option value="Priority C">Priority C (~10% Yield)</option>
+          </select>
+          <input type="text" id="checklist-search" oninput="renderChecklist()" placeholder="Search topic..." class="brutal-input px-2 py-1 text-xs w-32">
+        </div>
+      </div>
+
+      <div class="brutal-card overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs font-mono border-collapse">
+            <thead>
+              <tr class="bg-[#12161F] text-white border-b-2 border-white font-bold">
+                <th class="p-2.5">Official NTA Unit</th>
+                <th class="p-2.5 text-center">Class</th>
+                <th class="p-2.5 text-center">Tier</th>
+                <th class="p-2.5 text-center">Theory</th>
+                <th class="p-2.5 text-center">Notes</th>
+                <th class="p-2.5 text-center">PYQs</th>
+                <th class="p-2.5 text-center">Rev 1</th>
+                <th class="p-2.5 text-center">Rev 2</th>
+                <th class="p-2.5 text-center">Test</th>
+                <th class="p-2.5 text-center w-32">Strength (1-5)</th>
+              </tr>
+            </thead>
+            <tbody id="checklist-table-body" class="divide-y divide-slate-700">
+              <!-- JS Rendered -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: MOCK TESTS & DIAGNOSTICS -->
+    <div id="tab-mocks" class="tab-content hidden space-y-4">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div class="brutal-card p-4 space-y-3">
+          <h3 class="text-xs font-black uppercase text-brutalYellow tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-square-plus"></i> Record Mock Score
+          </h3>
+          <form id="mock-form" onsubmit="saveMockTest(event)" class="space-y-2.5 font-mono text-xs">
+            <div>
+              <label class="block text-[10px] text-slate-300 font-bold mb-1">Test Title</label>
+              <input type="text" id="mock-name" required placeholder="e.g. Full Mock 01" class="w-full brutal-input p-1.5 text-xs">
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block text-[10px] text-slate-300 font-bold mb-1">Date</label>
+                <input type="date" id="mock-date" required class="w-full brutal-input p-1 text-xs">
+              </div>
+              <div>
+                <label class="block text-[10px] text-slate-300 font-bold mb-1">Type</label>
+                <select id="mock-type" class="w-full brutal-input p-1 text-xs">
+                  <option value="Part-Syllabus">Part Test</option>
+                  <option value="Full Mock">Full Mock</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-2">
+              <div>
+                <label class="block text-[10px] text-brutalCyan font-bold mb-1">Physics</label>
+                <input type="number" id="mock-p" min="0" max="100" required class="w-full brutal-input p-1 text-center">
+              </div>
+              <div>
+                <label class="block text-[10px] text-brutalYellow font-bold mb-1">Chem</label>
+                <input type="number" id="mock-c" min="0" max="100" required class="w-full brutal-input p-1 text-center">
+              </div>
+              <div>
+                <label class="block text-[10px] text-brutalPink font-bold mb-1">Maths</label>
+                <input type="number" id="mock-m" min="0" max="100" required class="w-full brutal-input p-1 text-center">
+              </div>
+            </div>
+
+            <div class="pt-2 border-t border-slate-700">
+              <label class="block text-[10px] text-brutalOrange font-bold mb-1">Error Taxonomy (Question Counts)</label>
+              <div class="grid grid-cols-3 gap-1 text-[10px]">
+                <div class="bg-[#12161F] p-1 border border-slate-700 text-center">
+                  <span class="text-slate-400 block">Concept [C]</span>
+                  <input type="number" id="err-c" min="0" value="0" class="w-10 bg-slate-800 text-center text-brutalYellow">
+                </div>
+                <div class="bg-[#12161F] p-1 border border-slate-700 text-center">
+                  <span class="text-slate-400 block">Formula [F]</span>
+                  <input type="number" id="err-f" min="0" value="0" class="w-10 bg-slate-800 text-center text-brutalYellow">
+                </div>
+                <div class="bg-[#12161F] p-1 border border-slate-700 text-center">
+                  <span class="text-slate-400 block">Calc [CAL]</span>
+                  <input type="number" id="err-cal" min="0" value="0" class="w-10 bg-slate-800 text-center text-brutalYellow">
+                </div>
+                <div class="bg-[#12161F] p-1 border border-slate-700 text-center">
+                  <span class="text-slate-400 block">Misread [MIS]</span>
+                  <input type="number" id="err-mis" min="0" value="0" class="w-10 bg-slate-800 text-center text-brutalYellow">
+                </div>
+                <div class="bg-[#12161F] p-1 border border-slate-700 text-center">
+                  <span class="text-slate-400 block">Guessing [G]</span>
+                  <input type="number" id="err-g" min="0" value="0" class="w-10 bg-slate-800 text-center text-brutalYellow">
+                </div>
+                <div class="bg-[#12161F] p-1 border border-slate-700 text-center">
+                  <span class="text-slate-400 block">Time [T]</span>
+                  <input type="number" id="err-t" min="0" value="0" class="w-10 bg-slate-800 text-center text-brutalYellow">
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="w-full brutal-btn py-2 bg-brutalGreen text-black">Save Mock Entry</button>
+          </form>
+        </div>
+
+        <div class="lg:col-span-2 brutal-card p-4 flex flex-col justify-between">
+          <h3 class="text-xs font-black uppercase text-white tracking-wider mb-2">Score Progress Trajectory</h3>
+          <div class="w-full h-56 relative">
+            <canvas id="mockScoreChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="brutal-card p-4 overflow-x-auto">
+        <h3 class="text-xs font-black uppercase text-white tracking-wider mb-3">Mock Log History</h3>
+        <table class="w-full text-left text-xs font-mono border-collapse">
+          <thead>
+            <tr class="bg-[#12161F] text-white border-b-2 border-white">
+              <th class="p-2">Date</th>
+              <th class="p-2">Title</th>
+              <th class="p-2">Type</th>
+              <th class="p-2 text-center">P</th>
+              <th class="p-2 text-center">C</th>
+              <th class="p-2 text-center">M</th>
+              <th class="p-2 text-center font-bold">Total</th>
+              <th class="p-2">Errors (C/F/CAL/MIS/G/T)</th>
+              <th class="p-2 text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody id="mock-history-body" class="divide-y divide-slate-700">
+            <!-- JS Rendered -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 4: BACKLOG VAULT -->
+    <div id="tab-backlogs" class="tab-content hidden space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="brutal-card p-4 space-y-3">
+          <h3 class="text-xs font-black uppercase text-brutalPink tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-plus-circle"></i> Log Backlog Item
+          </h3>
+          <form id="backlog-form" onsubmit="addBacklogItem(event)" class="space-y-2.5 font-mono text-xs">
+            <div>
+              <label class="block text-[10px] text-slate-300 font-bold mb-1">Topic Title</label>
+              <input type="text" id="bl-title" required placeholder="e.g. Rotational Motion PYQs" class="w-full brutal-input p-1.5">
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block text-[10px] text-slate-300 font-bold mb-1">Subject</label>
+                <select id="bl-subject" class="w-full brutal-input p-1">
+                  <option value="Physics">Physics</option>
+                  <option value="Chemistry">Chemistry</option>
+                  <option value="Mathematics">Mathematics</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-[10px] text-slate-300 font-bold mb-1">Priority</label>
+                <select id="bl-priority" class="w-full brutal-input p-1">
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="block text-[10px] text-slate-300 font-bold mb-1">Notes / Plan</label>
+              <textarea id="bl-notes" rows="2" placeholder="e.g. PW One-Shot + 20 PYQs" class="w-full brutal-input p-1.5"></textarea>
+            </div>
+            <button type="submit" class="w-full brutal-btn py-2 bg-brutalPink text-white">Save Backlog</button>
+          </form>
+        </div>
+
+        <div class="md:col-span-2 brutal-card p-4 space-y-3">
+          <div class="flex justify-between items-center">
+            <h3 class="text-xs font-black uppercase text-white tracking-wider">Backlog Vault Items</h3>
+            <div class="flex items-center space-x-1">
+              <button onclick="filterBacklog('all')" class="brutal-btn px-2 py-0.5 text-[10px] bg-brutalCyan text-black">All</button>
+              <button onclick="filterBacklog('pending')" class="brutal-btn px-2 py-0.5 text-[10px] bg-slate-800 text-white">Pending</button>
+              <button onclick="filterBacklog('done')" class="brutal-btn px-2 py-0.5 text-[10px] bg-slate-800 text-white">Done</button>
+            </div>
+          </div>
+          <div id="backlog-items-list" class="space-y-2 max-h-[380px] overflow-y-auto pr-1">
+            <!-- JS Rendered -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Notes Modal -->
+  <div id="notes-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="brutal-card w-full max-w-md p-4 space-y-3 bg-[#1A1F2C] relative">
+      <button onclick="closeNotesModal()" class="absolute top-3 right-3 text-slate-400 hover:text-white text-base"><i class="fa-solid fa-xmark"></i></button>
+      <h3 id="modal-day-title" class="text-sm font-black text-brutalYellow font-mono uppercase">Day Notes</h3>
+      <textarea id="modal-notes-text" rows="5" class="w-full brutal-input p-2 text-xs text-white font-mono" placeholder="Log calculation mistakes, formulas forgotten, or progress notes..."></textarea>
+      <div class="flex justify-end space-x-2">
+        <button onclick="closeNotesModal()" class="brutal-btn px-3 py-1 text-xs bg-slate-800 text-white">Cancel</button>
+        <button onclick="saveDayNotes()" class="brutal-btn px-3 py-1 text-xs bg-brutalYellow text-black">Save Note</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* PRELOADED 75-DAY LEAN SCHEDULE DATA STRUCTURE */
+    const FULL_SCHEDULE_DATA = [
+      // Phase 1
+      { 
+        day: 1, date: "1 Nov 2026", phase: "Phase 1", wl: "M", isTest: false, focus: "Foundations & Stoichiometry",
+        phy: "Theory: Units, Dimensions & Errors (PW One-Shot). Practice: 25 Vernier/Screw Gauge & Error PYQs.",
+        chem: "Theory: Mole Concept & Stoichiometry. Practice: 25 Molarity/Molality calculation PYQs.",
+        math: "Short Notes Rev (30m): Basic Maths, Logarithms & Wavy Curve Method."
+      },
+      { 
+        day: 2, date: "2 Nov 2026", phase: "Phase 1", wl: "M", isTest: false, focus: "Kinematics & Quadratics",
+        phy: "Theory: Kinematics 1D & Graphs. Practice: 25 v-t/x-t graph conversion PYQs.",
+        chem: "Short Notes Rev (30m): Mole Concept & Equivalent Weight formulas.",
+        math: "Theory: Quadratic Equations. Practice: 25 Location of Roots & Newton's Sum PYQs."
+      },
+      { 
+        day: 3, date: "3 Nov 2026", phase: "Phase 1", wl: "M", isTest: false, focus: "Atomic Structure & Functions",
+        phy: "Theory: Kinematics 2D & Projectile Motion. Practice: 25 Trajectory & Relative Motion PYQs.",
+        chem: "Theory: Atomic Structure & Quantum Numbers. Practice: 25 Bohr Model & Spectrum PYQs.",
+        math: "Theory: Sets, Relations & Functions. Practice: 25 Domain & Range PYQs."
+      },
+      { 
+        day: 4, date: "4 Nov 2026", phase: "Phase 1", wl: "M", isTest: false, focus: "NLM & Thermodynamics",
+        phy: "Theory: NLM & Friction. Practice: 25 Pulley Systems & Friction Block PYQs.",
+        chem: "Theory: Chemical Thermodynamics I. Practice: 25 Enthalpy & First Law PYQs.",
+        math: "Short Notes Rev (30m): Quadratic Discriminant & Range formulas."
+      },
+      { 
+        day: 5, date: "5 Nov 2026", phase: "Phase 1", wl: "M", isTest: false, focus: "WPE & Chemical Bonding",
+        phy: "Theory: Work, Power & Energy. Practice: 25 Work-Energy Theorem & Vertical Circular Motion PYQs.",
+        chem: "Theory: Chemical Bonding I (VSEPR & Hybridization). Practice: 25 Dipole & Geometry PYQs.",
+        math: "Theory: Sequences & Series. Practice: 25 AP, GP & Special Series Summation PYQs."
+      },
+      { 
+        day: 6, date: "6 Nov 2026", phase: "Phase 1", wl: "M", isTest: false, focus: "MOT Bonding & Matrices",
+        phy: "Short Notes Rev (30m): WPE Conservation Laws & Pulley formulas.",
+        chem: "Theory: Chemical Bonding II (MOT). Practice: 25 Bond Order & Magnetic Character PYQs.",
+        math: "Theory: Matrices & Operations. Practice: 25 Symmetric/Skew-Symmetric & Inverse PYQs."
+      },
+      { 
+        day: 7, date: "7 Nov 2026", phase: "Phase 1", wl: "M", isTest: false, focus: "Periodic Table & Determinants",
+        phy: "Short Notes Rev (30m): Units & Kinematics 1D error log.",
+        chem: "Theory: Periodic Properties. Practice: 20 Ionization & Radius Trend PYQs.",
+        math: "Theory: Determinants. Practice: 25 Cramer's Rule System of Equations PYQs."
+      },
+      { 
+        day: 8, date: "8 Nov 2026", phase: "Phase 1", wl: "H", isTest: true, focus: "PART TEST 01 & RECOVERY",
+        phy: "MOCK EXAM: Part Test 1 (Phase 1 Mechanics/Algebra) — 3 Hours, 300 Marks.",
+        chem: "ERROR AUDIT: 1.5h Classification (Concept vs Calculation Mistakes).",
+        math: "RECOVERY LEARNING: Chemical Equilibrium (Kp/Kc & Le Chatelier + 15 PYQs)."
+      },
+      { 
+        day: 9, date: "9 Nov 2026", phase: "Phase 1", wl: "M", isTest: false, focus: "Electrostatics & Complex",
+        phy: "Theory: Electrostatics I (Fields & Gauss Law). Practice: 25 Dipole & Field PYQs.",
+        chem: "Short Notes Rev (30m): Periodic Trends & MOT Bond Order tricks.",
+        math: "Theory: Complex Numbers. Practice: 25 Conjugate, Modulus & Locus PYQs."
+      },
+      { 
+        day: 10, date: "10 Nov 2026", phase: "Phase 1", wl: "M", isTest: false, focus: "Capacitance & GOC",
+        phy: "Theory: Electrostatics II (Capacitance). Practice: 25 Dielectrics & Energy PYQs.",
+        chem: "Theory: GOC I (IUPAC & Isomerism). Practice: 25 Structural & Stereoisomerism PYQs.",
+        math: "Short Notes Rev (30m): Matrices Adjoint & Cramer's Rule formulas."
+      },
+      { 
+        day: 11, date: "11 Nov 2026", phase: "Phase 1", wl: "M", isTest: false, focus: "Current & GOC Effects",
+        phy: "Short Notes Rev (30m): Electrostatics Potential & Capacitor formulas.",
+        chem: "Theory: GOC II (Electronic Effects). Practice: 25 Resonance & Stability PYQs.",
+        math: "Theory: Vector Algebra. Practice: 25 Dot & Cross Product PYQs."
+      },
+      { 
+        day: 12, date: "12 Nov 2026", phase: "Phase 1", wl: "M", isTest: false, focus: "Magnetism & Hydrocarbons",
+        phy: "Theory: Current Electricity. Practice: 25 Kirchhoff & Bridge Circuit PYQs.",
+        chem: "Short Notes Rev (30m): GOC Electronic Effects stability orders.",
+        math: "Theory: 3D Geometry. Practice: 25 Line Equations & Skew Distance PYQs."
+      },
+      { 
+        day: 13, date: "13 Nov 2026", phase: "Phase 1", wl: "M", isTest: false, focus: "EMI & Binomial",
+        phy: "Theory: Magnetic Effects of Current. Practice: 25 Ampere Law & Magnetic Force PYQs.",
+        chem: "Short Notes Rev (30m): Chemical Thermodynamics First Law formulas.",
+        math: "Theory: Binomial Theorem. Practice: 25 General & Middle Term PYQs."
+      },
+      { 
+        day: 14, date: "14 Nov 2026", phase: "Phase 1", wl: "M", isTest: false, focus: "AC & Hydrocarbons",
+        phy: "Theory: EMI & Induction. Practice: 25 Faraday Law & Inductance PYQs.",
+        chem: "Theory: Hydrocarbons (Alkenes & Aromatic). Practice: 25 Reaction Mechanism PYQs.",
+        math: "Short Notes Rev (30m): 3D Geometry Distance & Angle formulas."
+      },
+      { 
+        day: 15, date: "15 Nov 2026", phase: "Phase 1", wl: "H", isTest: true, focus: "PHASE 1 END TEST & RECOVERY",
+        phy: "MOCK EXAM: Phase 1 Cumulative Test (Days 1-14 Syllabus) — 3 Hours, 300 Marks.",
+        chem: "ERROR AUDIT: Comprehensive Mistake Log & Formula Book Update.",
+        math: "RECOVERY LEARNING: Ionic Equilibrium (pH & Buffers + 15 PYQs)."
+      },
+
+      // Phase 2
+      { 
+        day: 16, date: "16 Nov 2026", phase: "Phase 2", wl: "M", isTest: false, focus: "Modern Physics & Kinetics",
+        phy: "Theory: Modern Physics I (Photoelectric Effect). Practice: 25 Photoelectric PYQs.",
+        chem: "Theory: Chemical Kinetics. Practice: 25 First Order Rate Law PYQs.",
+        math: "Short Notes Rev (30m): Binomial & P&C core formulas."
+      },
+      { 
+        day: 17, date: "17 Nov 2026", phase: "Phase 2", wl: "M", isTest: false, focus: "Atoms & Solutions",
+        phy: "Short Notes Rev (30m): Photoelectric Stopping Potential formulas.",
+        chem: "Theory: Solutions & Colligative Properties. Practice: 25 van't Hoff Factor PYQs.",
+        math: "Theory: Probability. Practice: 25 Bayes' Theorem & Conditional PYQs."
+      },
+      { 
+        day: 18, date: "18 Nov 2026", phase: "Phase 2", wl: "M", isTest: false, focus: "Ray Optics & Definite Int",
+        phy: "Theory: Modern Physics II (Atoms & Nuclei). Practice: 25 Bohr Spectrum PYQs.",
+        chem: "Short Notes Rev (30m): Kinetics Half-life & Arrhenius formulas.",
+        math: "Theory: Definite Integration. Practice: 25 King's Property PYQs."
+      },
+      { 
+        day: 19, date: "19 Nov 2026", phase: "Phase 2", wl: "M", isTest: false, focus: "Optics & Electrochemistry",
+        phy: "Theory: Ray Optics I (Prisms & Lenses). Practice: 25 Lens Formula PYQs.",
+        chem: "Theory: Electrochemistry. Practice: 25 Nernst Equation & Conductance PYQs.",
+        math: "Short Notes Rev (30m): Definite Integration King's Property tricks."
+      },
+      { 
+        day: 20, date: "20 Nov 2026", phase: "Phase 2", wl: "M", isTest: false, focus: "d-Block & DE",
+        phy: "Short Notes Rev (30m): Ray Optics Prism & Lens formulas.",
+        chem: "Theory: d- & f-Block Elements. Practice: 20 K2Cr2O7 & KMnO4 PYQs.",
+        math: "Theory: Differential Equations. Practice: 25 Linear DE (IF Method) PYQs."
+      },
+      { 
+        day: 21, date: "21 Nov 2026", phase: "Phase 2", wl: "M", isTest: false, focus: "Instruments & Coordination",
+        phy: "Theory: Ray Optics II (Microscope/Telescope). Practice: 25 Magnification PYQs.",
+        chem: "Theory: Coordination Compounds I (Naming & Isomerism). Practice: 25 IUPAC PYQs.",
+        math: "Short Notes Rev (30m): Differential Equations Integrating Factor rules."
+      },
+      { 
+        day: 22, date: "22 Nov 2026", phase: "Phase 2", wl: "H", isTest: true, focus: "PART TEST 02 & RECOVERY",
+        phy: "MOCK EXAM: Part Test 2 (Class 12 Core Focus) — 3 Hours, 300 Marks.",
+        chem: "ERROR AUDIT: Organic Reaction Mechanism Error Classification.",
+        math: "RECOVERY LEARNING: Coordination Compounds (CFT & VBT + 15 PYQs)."
+      },
+      { 
+        day: 23, date: "23 Nov 2026", phase: "Phase 2", wl: "M", isTest: false, focus: "Coordination II & AUC",
+        phy: "Short Notes Rev (30m): Modern Physics Atoms & Nuclei formulas.",
+        chem: "Theory: Coordination Compounds II (CFT & VBT). Practice: 25 Splitting PYQs.",
+        math: "Theory: Area Under Curves (AUC). Practice: 25 Parabola & Line Area PYQs."
+      },
+      { 
+        day: 24, date: "24 Nov 2026", phase: "Phase 2", wl: "M", isTest: false, focus: "Fluids & Hydrocarbons",
+        phy: "Theory: Fluid Mechanics. Practice: 25 Bernoulli & Viscosity PYQs.",
+        chem: "Theory: Hydrocarbons Reaction Practice. Practice: 20 Ozonolysis PYQs.",
+        math: "Short Notes Rev (30m): AUC Standard Area formulas."
+      },
+      { 
+        day: 25, date: "25 Nov 2026", phase: "Phase 2", wl: "M", isTest: false, focus: "Rotation & Straight Lines",
+        phy: "Theory: Rotational Motion I (Moment of Inertia). Practice: 25 MOI PYQs.",
+        chem: "Short Notes Rev (30m): Coordination Compounds CFT Spectrochemical Series.",
+        math: "Theory: Straight Lines. Practice: 25 Distance & Image PYQs."
+      },
+      { 
+        day: 26, date: "26 Nov 2026", phase: "Phase 2", wl: "M", isTest: false, focus: "Torque & Amines",
+        phy: "Theory: Rotational Motion II (Torque & Rolling). Practice: 25 Rolling PYQs.",
+        chem: "Theory: Physical Chemistry Mixed PYQs. Practice: 30 Mixed Numericals.",
+        math: "Short Notes Rev (30m): Straight Lines Foot of Perpendicular formulas."
+      },
+      { 
+        day: 27, date: "27 Nov 2026", phase: "Phase 2", wl: "M", isTest: false, focus: "Mechanics PYQs & Amines",
+        phy: "Theory: Mechanics Mixed High-Yield PYQs. Practice: 30 Timed PYQs.",
+        chem: "Theory: Amines & Nitrogen Compounds. Practice: 25 Basic Strength PYQs.",
+        math: "Short Notes Rev (30m): Probability Bayes' Theorem rules."
+      },
+      { 
+        day: 28, date: "28 Nov 2026", phase: "Phase 2", wl: "M", isTest: false, focus: "Thermo Physics & Vectors",
+        phy: "Theory: Thermodynamics & KTG (Physics). Practice: 25 Work & RMS Speed PYQs.",
+        chem: "Short Notes Rev (30m): Amines Named Test Reactions.",
+        math: "Theory: Vector & 3D High-Yield PYQs. Practice: 30 Line & Plane PYQs."
+      },
+      { 
+        day: 29, date: "29 Nov 2026", phase: "Phase 2", wl: "M", isTest: false, focus: "Inorganic & Calculus",
+        phy: "Short Notes Rev (30m): Physics Thermodynamics & KTG formulas.",
+        chem: "Theory: Inorganic Mixed PYQs. Practice: 30 Coordination & Bonding PYQs.",
+        math: "Theory: Calculus Mixed PYQs. Practice: 30 Definite Int & DE PYQs."
+      },
+      { 
+        day: 30, date: "30 Nov 2026", phase: "Phase 2", wl: "H", isTest: true, focus: "PHASE 2 END TEST & RECOVERY",
+        phy: "MOCK EXAM: Phase 2 Cumulative Test (Full Phase 1 & 2) — 3 Hours, 300 Marks.",
+        chem: "ERROR AUDIT: Detailed Error Log Update & Score Trend Check.",
+        math: "RECOVERY LEARNING: Semiconductors (Logic Gates & Diodes + 15 PYQs)."
+      },
+
+      // Phase 3
+      { 
+        day: 31, date: "1 Dec 2026", phase: "Phase 3", wl: "M", isTest: false, focus: "EM & Physical Thermo",
+        phy: "Practice: Electromagnetism Integrated PYQs (30 Qs).",
+        chem: "Practice: Chemical Thermodynamics Numericals (25 Qs).",
+        math: "Short Notes Rev (30m): Matrices & Determinants Shortcut Rules."
+      },
+      { 
+        day: 32, date: "2 Dec 2026", phase: "Phase 3", wl: "M", isTest: false, focus: "Optics & Complex PYQs",
+        phy: "Practice: Ray & Wave Optics High-Yield PYQs (30 Qs).",
+        chem: "Short Notes Rev (30m): Coordination IUPAC Rules.",
+        math: "Practice: Complex Numbers Geometry & Locus PYQs (25 Qs)."
+      },
+      { 
+        day: 33, date: "3 Dec 2026", phase: "Phase 3", wl: "M", isTest: false, focus: "Modern Physics & Organic",
+        phy: "Practice: Modern Physics & Semiconductors PYQs (30 Qs).",
+        chem: "Practice: GOC & Hydrocarbons Reaction PYQs (25 Qs).",
+        math: "Short Notes Rev (30m): Vector Dot & Cross Product Identities."
+      },
+      { 
+        day: 34, date: "4 Dec 2026", phase: "Phase 3", wl: "M", isTest: false, focus: "SHM & Circle",
+        phy: "Theory: Oscillations & SHM. Practice: 25 Energy in SHM PYQs.",
+        chem: "Short Notes Rev (30m): Chemical Kinetics First Order Formulas.",
+        math: "Theory: Circle (Conics). Practice: 25 Tangents & Circles PYQs."
+      },
+      { 
+        day: 35, date: "5 Dec 2026", phase: "Phase 3", wl: "M", isTest: false, focus: "Haloalkanes & Parabola",
+        phy: "Short Notes Rev (30m): SHM Time Period & Spring formulas.",
+        chem: "Theory: Haloalkanes & Haloarenes. Practice: 25 SN1 vs SN2 PYQs.",
+        math: "Theory: Parabola. Practice: 20 Focal Chord & Tangents PYQs."
+      },
+      { 
+        day: 36, date: "6 Dec 2026", phase: "Phase 3", wl: "M", isTest: false, focus: "Sound Waves & Alcohols",
+        phy: "Theory: Sound Waves & Doppler Effect. Practice: 25 Doppler PYQs.",
+        chem: "Theory: Alcohols, Phenols & Ethers. Practice: 25 Reimer-Tiemann PYQs.",
+        math: "Short Notes Rev (30m): Parabola Standard Tangent rules."
+      },
+      { 
+        day: 37, date: "7 Dec 2026", phase: "Phase 3", wl: "H", isTest: true, focus: "PART TEST 03 & RECOVERY",
+        phy: "MOCK EXAM: Part Test 3 (Phase 3 Topics) — 3 Hours, 300 Marks.",
+        chem: "ERROR AUDIT: Sectional Time-Management Analysis.",
+        math: "RECOVERY LEARNING: Ellipse (Standard Equation & Tangents + 15 PYQs)."
+      },
+      { 
+        day: 38, date: "8 Dec 2026", phase: "Phase 3", wl: "M", isTest: false, focus: "Aldehydes & Hyperbola",
+        phy: "Short Notes Rev (30m): Sound Waves Doppler Effect formulas.",
+        chem: "Theory: Aldehydes & Ketones. Practice: 25 Aldol & Cannizzaro PYQs.",
+        math: "Theory: Hyperbola. Practice: 20 Eccentricity & Asymptote PYQs."
+      },
+      { 
+        day: 39, date: "9 Dec 2026", phase: "Phase 3", wl: "M", isTest: false, focus: "Gravitation & p-Block",
+        phy: "Theory: Gravitation. Practice: 25 Escape & Orbital Speed PYQs.",
+        chem: "Theory: p-Block Elements (13th-18th). Practice: 25 Oxoacids PYQs.",
+        math: "Short Notes Rev (30m): Ellipse & Hyperbola Eccentricity formulas."
+      },
+      { 
+        day: 40, date: "10 Dec 2026", phase: "Phase 3", wl: "M", isTest: false, focus: "KTG & Limits",
+        phy: "Theory: KTG. Practice: 20 Degrees of Freedom PYQs.",
+        chem: "Short Notes Rev (30m): p-Block Oxoacids structures.",
+        math: "Theory: Limits. Practice: 25 L'Hopital Rule PYQs."
+      },
+      { 
+        day: 41, date: "11 Dec 2026", phase: "Phase 3", wl: "M", isTest: false, focus: "Equilibrium & Continuity",
+        phy: "Short Notes Rev (30m): Gravitation Potential Energy formulas.",
+        chem: "Theory: Ionic & Chemical Equilibrium Revision. Practice: 25 Ksp PYQs.",
+        math: "Theory: Continuity & Differentiability. Practice: 25 Chain Rule PYQs."
+      },
+      { 
+        day: 42, date: "12 Dec 2026", phase: "Phase 3", wl: "M", isTest: false, focus: "Heat & Organic Mechanics",
+        phy: "Theory: Thermal Properties of Matter. Practice: 25 Calorimetry PYQs.",
+        chem: "Theory: Organic Named Reactions Practice. Practice: 25 Mechanism PYQs.",
+        math: "Short Notes Rev (30m): Limits Expansion Series."
+      },
+      { 
+        day: 43, date: "13 Dec 2026", phase: "Phase 3", wl: "M", isTest: false, focus: "AC & AOD",
+        phy: "Theory: Alternating Current (AC). Practice: 25 Resonance PYQs.",
+        chem: "Short Notes Rev (30m): Aldehydes & Ketones Reagent list.",
+        math: "Theory: Application of Derivatives (AOD). Practice: 25 Maxima PYQs."
+      },
+      { 
+        day: 44, date: "14 Dec 2026", phase: "Phase 3", wl: "M", isTest: false, focus: "EM Waves & Inorganic",
+        phy: "Theory: EM Waves. Practice: 20 Spectrum PYQs.",
+        chem: "Theory: Inorganic NCERT Scan & Rev. Practice: 20 Metallurgical PYQs.",
+        math: "Short Notes Rev (30m): AOD Maxima/Minima derivative rules."
+      },
+      { 
+        day: 45, date: "15 Dec 2026", phase: "Phase 3", wl: "H", isTest: true, focus: "CUMULATIVE TEST 06 & RECOVERY",
+        phy: "MOCK EXAM: Full Phase 1 + 2 + 3 Test — 3 Hours, 300 Marks.",
+        chem: "ERROR AUDIT: Silly Mistake & Calculation Error Classification.",
+        math: "RECOVERY LEARNING: Organic Reaction Flowcharts Review."
+      },
+
+      // Phase 4
+      { 
+        day: 46, date: "16 Dec 2026", phase: "Phase 4", wl: "M", isTest: false, focus: "Kinematics 2D & Redox",
+        phy: "Theory: Kinematics 2D Projectiles. Practice: 25 Inclined Projectile PYQs.",
+        chem: "Short Notes Rev (30m): Electrochemistry Nernst Equation.",
+        math: "Theory: Redox Reactions & Titrations. Practice: 20 Oxidation State PYQs."
+      },
+      { 
+        day: 47, date: "17 Dec 2026", phase: "Phase 4", wl: "M", isTest: false, focus: "Salt Analysis & Statistics",
+        phy: "Short Notes Rev (30m): Kinematics 2D Range formulas.",
+        chem: "Theory: Practical Chem & Salt Analysis. Practice: 25 Radical Test PYQs.",
+        math: "Theory: Statistics. Practice: 25 Variance & Mean PYQs."
+      },
+      { 
+        day: 48, date: "18 Dec 2026", phase: "Phase 4", wl: "M", isTest: false, focus: "COM & ITF",
+        phy: "Theory: Centre of Mass & Collisions. Practice: 25 Collision PYQs.",
+        chem: "Short Notes Rev (30m): Practical Chem Flame Colors.",
+        math: "Theory: Inverse Trigonometry (ITF). Practice: 20 Domain PYQs."
+      },
+      { 
+        day: 49, date: "19 Dec 2026", phase: "Phase 4", wl: "M", isTest: false, focus: "Experimental Physics & Acids",
+        phy: "Theory: Experimental Physics & Errors. Practice: 25 Screw Gauge PYQs.",
+        chem: "Theory: Carboxylic Acids & Derivatives. Practice: 25 Esterification PYQs.",
+        math: "Short Notes Rev (30m): Statistics Variance properties."
+      },
+      { 
+        day: 50, date: "20 Dec 2026", phase: "Phase 4", wl: "M", isTest: false, focus: "Inorganic & Trig",
+        phy: "Short Notes Rev (30m): Experimental Physics Error calculations.",
+        chem: "Theory: Inorganic Chemistry PYQs. Practice: 30 d-Block & Coordination PYQs.",
+        math: "Theory: Trigonometry Ratios & Identities. Practice: 20 Compound Angle PYQs."
+      },
+      { 
+        day: 51, date: "21 Dec 2026", phase: "Phase 4", wl: "H", isTest: true, focus: "FULL MOCK 01 & RECOVERY",
+        phy: "MOCK EXAM: Full Syllabus Mock Test 1 — 3 Hours, 300 Marks.",
+        chem: "ERROR AUDIT: Mistake Taxonomy Log (Concept vs Misreading).",
+        math: "RECOVERY LEARNING: Formula Sheet Review across Physics Mechanics."
+      },
+      { 
+        day: 52, date: "22 Dec 2026", phase: "Phase 4", wl: "M", isTest: false, focus: "Solids & Physical PYQs",
+        phy: "Theory: Elasticity & Solids. Practice: 20 Stress-Strain PYQs.",
+        chem: "Practice: 12th Physical Chem Mixed PYQs (30 Qs).",
+        math: "Short Notes Rev (30m): Trigonometry Compound Angle formulas."
+      },
+      { 
+        day: 53, date: "23 Dec 2026", phase: "Phase 4", wl: "M", isTest: false, focus: "Physical 11th & Trig Eq",
+        phy: "Short Notes Rev (30m): Elasticity Young's Modulus formulas.",
+        chem: "Practice: 11th Physical Chem Mixed PYQs (30 Qs).",
+        math: "Theory: Trigonometric Equations. Practice: 15 General Solution PYQs."
+      },
+      { 
+        day: 54, date: "24 Dec 2026", phase: "Phase 4", wl: "M", isTest: false, focus: "Magnetism Matter & Integration",
+        phy: "Theory: Magnetic Properties of Matter. Practice: 20 Hysteresis PYQs.",
+        chem: "Short Notes Rev (30m): Physical Chem Kinetics formulas.",
+        math: "Theory: Indefinite Integration. Practice: 20 Substitution PYQs."
+      },
+      { 
+        day: 55, date: "25 Dec 2026", phase: "Phase 4", wl: "M", isTest: false, focus: "Kinematics Rev & Organic PYQs",
+        phy: "Practice: Kinematics & Errors Marked PYQs Re-solving (25 Qs).",
+        chem: "Short Notes Rev (30m): Magnetism Hysteresis properties.",
+        math: "Practice: Organic Chemistry Mixed PYQs (30 Qs)."
+      },
+      { 
+        day: 56, date: "26 Dec 2026", phase: "Phase 4", wl: "H", isTest: true, focus: "FULL MOCK 02 & RECOVERY",
+        phy: "MOCK EXAM: Full Syllabus Mock Test 2 — 3 Hours, 300 Marks.",
+        chem: "ERROR AUDIT: Action Plan Update & Weakness Repair.",
+        math: "RECOVERY LEARNING: Inorganic NCERT Tables & Exceptions Scan."
+      },
+      { 
+        day: 57, date: "27 Dec 2026", phase: "Phase 4", wl: "M", isTest: false, focus: "Conics & Organic Flowcharts",
+        phy: "Short Notes Rev (30m): Modern Physics & Semiconductors formulas.",
+        chem: "Practice: Conic Sections Mixed PYQs (30 Qs).",
+        math: "Theory: Organic Chemistry Reaction Maps Review."
+      },
+      { 
+        day: 58, date: "28 Dec 2026", phase: "Phase 4", wl: "M", isTest: false, focus: "Mechanics & Algebra Drilling",
+        phy: "Practice: Mechanics Mixed High-Yield PYQs (30 Qs).",
+        chem: "Short Notes Rev (30m): Organic Named Reactions List.",
+        math: "Practice: Algebra Mixed High-Yield PYQs (30 Qs)."
+      },
+      { 
+        day: 59, date: "29 Dec 2026", phase: "Phase 4", wl: "M", isTest: false, focus: "EM & NCERT Scan",
+        phy: "Practice: Electromagnetism & AC Marked PYQs (30 Qs).",
+        chem: "Theory: Inorganic NCERT Line-by-Line Scanning.",
+        math: "Short Notes Rev (30m): Calculus Standard Limits & Integral rules."
+      },
+      { 
+        day: 60, date: "30 Dec 2026", phase: "Phase 4", wl: "H", isTest: true, focus: "FULL MOCK 03 & RECOVERY",
+        phy: "MOCK EXAM: Full Syllabus Mock Test 3 — 3 Hours, 300 Marks.",
+        chem: "ERROR AUDIT: Score Trend Analysis across Mocks 1, 2, 3.",
+        math: "RECOVERY LEARNING: Vector & 3D Geometry Formula Review."
+      },
+
+      // Phase 5
+      { 
+        day: 61, date: "31 Dec 2026", phase: "Phase 5", wl: "M", isTest: false, focus: "Electrostatics & Physical Formulas",
+        phy: "Practice: Electrostatics & Current Marked PYQs (25 Qs).",
+        chem: "Theory: Physical Chem Formula Sheet Review.",
+        math: "Short Notes Rev (30m): Matrices & Determinants shortcut rules."
+      },
+      { 
+        day: 62, date: "1 Jan 2027", phase: "Phase 5", wl: "M", isTest: false, focus: "Modern Physics & Vector 3D",
+        phy: "Practice: Modern Physics & Logic Gates Marked PYQs (25 Qs).",
+        chem: "Short Notes Rev (30m): Organic Mechanisms & Reagents list.",
+        math: "Practice: Matrices, Vectors & 3D High-Priority PYQs (30 Qs)."
+      },
+      { 
+        day: 63, date: "2 Jan 2027", phase: "Phase 5", wl: "H", isTest: true, focus: "FULL MOCK 04 & RECOVERY",
+        phy: "MOCK EXAM: Full Syllabus Mock Test 4 — 3 Hours, 300 Marks.",
+        chem: "ERROR AUDIT: Shift Simulation & Time-Management Check.",
+        math: "RECOVERY LEARNING: Organic Chemistry Reaction Maps & Reagents."
+      },
+      { 
+        day: 64, date: "3 Jan 2027", phase: "Phase 5", wl: "M", isTest: false, focus: "Optics & Thermo Physics",
+        phy: "Short Notes Rev (30m): Ray & Wave Optics formulas.",
+        chem: "Theory: Combined Physics-Chemistry Thermodynamics Revision.",
+        math: "Practice: Definite Integration & DE Marked PYQs (25 Qs)."
+      },
+      { 
+        day: 65, date: "4 Jan 2027", phase: "Phase 5", wl: "M", isTest: false, focus: "Optics PYQs & NCERT Inorganic",
+        phy: "Practice: Ray & Wave Optics Marked PYQs (25 Qs).",
+        chem: "Theory: Inorganic NCERT Fact Scanning.",
+        math: "Short Notes Rev (30m): Probability & P&C formulas."
+      },
+      { 
+        day: 66, date: "5 Jan 2027", phase: "Phase 5", wl: "H", isTest: true, focus: "FULL MOCK 05 & RECOVERY",
+        phy: "MOCK EXAM: Full Syllabus Mock Test 5 — 3 Hours, 300 Marks.",
+        chem: "ERROR AUDIT: Final Score Trend Audit.",
+        math: "RECOVERY LEARNING: Physical Chemistry Formula Rapid Review."
+      },
+      { 
+        day: 67, date: "6 Jan 2027", phase: "Phase 5", wl: "M", isTest: false, focus: "Mechanics I & Algebra Rev",
+        phy: "Practice: Mechanics I (Kinematics/WPE) Formula Review & PYQs.",
+        chem: "Short Notes Rev (30m): Physical Chemistry Quick Formulas.",
+        math: "Practice: Algebra (Quadratic/Binomial) Marked PYQs (25 Qs)."
+      },
+      { 
+        day: 68, date: "7 Jan 2027", phase: "Phase 5", wl: "M", isTest: false, focus: "Organic & Conics Rev",
+        phy: "Short Notes Rev (30m): Mechanics II (Rotation/Gravitation) rules.",
+        chem: "Practice: Organic Named Reactions & Marked PYQs (25 Qs).",
+        math: "Theory: Conic Sections Standard Tangents & Properties."
+      },
+      { 
+        day: 69, date: "8 Jan 2027", phase: "Phase 5", wl: "H", isTest: true, focus: "FULL MOCK 06 & RECOVERY",
+        phy: "MOCK EXAM: Full Syllabus Mock Test 6 (Final Benchmark) — 3 Hours.",
+        chem: "ERROR AUDIT: Final Score Confidence Calibration.",
+        math: "RECOVERY LEARNING: Calculus Derivative Rules & Limits Review."
+      },
+      { 
+        day: 70, date: "9 Jan 2027", phase: "Phase 5", wl: "M", isTest: false, focus: "Mechanics II & Inorganic",
+        phy: "Practice: Mechanics II (Rotation/Fluids) Marked PYQs (25 Qs).",
+        chem: "Theory: Inorganic Coordination & Periodic Table Scan.",
+        math: "Short Notes Rev (30m): Differential Equations & AUC formulas."
+      },
+      { 
+        day: 71, date: "10 Jan 2027", phase: "Phase 5", wl: "M", isTest: false, focus: "Biomolecules & Stats",
+        phy: "Short Notes Rev (30m): Complete Physics Unit Dimensions List.",
+        chem: "Theory: Biomolecules & Salt Analysis Radical Tables.",
+        math: "Theory: Statistics, ITF & Trigonometry Formula Review."
+      },
+      { 
+        day: 72, date: "11 Jan 2027", phase: "Phase 5", wl: "H", isTest: true, focus: "FINAL SIMULATION MOCK 07",
+        phy: "MOCK EXAM: Full Syllabus Mock Test 7 (Final Exam Simulation) — 3 Hours.",
+        chem: "ERROR AUDIT: Final Error Log Elimination.",
+        math: "RECOVERY LEARNING: Targeted Core Chapter Quick Problem Solving."
+      },
+      { 
+        day: 73, date: "12 Jan 2027", phase: "Phase 5", wl: "L", isTest: false, focus: "Organic & Electrodynamics Scan",
+        phy: "Theory: Organic Named Reactions & Mechanisms Final Scan.",
+        chem: "Theory: Electromagnetism Formulas & Circuit Diagrams.",
+        math: "Short Notes Rev (30m): Vector & 3D Geometry formulas."
+      },
+      { 
+        day: 74, date: "13 Jan 2027", phase: "Phase 5", wl: "L", isTest: false, focus: "Complete Formula Scan",
+        phy: "Theory: Physics Complete Formula Book Rapid Scanning.",
+        chem: "Theory: Chemistry NCERT Inorganic Facts & Organic Reagents.",
+        math: "Theory: Maths Complete Identity & Formula Scanning."
+      },
+      { 
+        day: 75, date: "14 Jan 2027", phase: "Phase 5", wl: "L", isTest: false, focus: "FINAL EXAM READINESS",
+        phy: "Light Formula Scanning Only. Verify Admit Card & Exam Kit.",
+        chem: "NCERT Inorganic Fact Check. Rest after 6:00 PM.",
+        math: "Maths Standard Identity Check. Sleep Early."
+      }
+    ];
+
+    /* FULL NTA PAPER 1 SYLLABUS DATA (64 UNITS) */
+    const FULL_CHECKLIST_DATA = {
+      physics: [
+        { id: "p1", name: "Electrostatics & Capacitance", class: "Cl-12", prio: "Priority A" },
+        { id: "p2", name: "Modern Physics (Dual Nature, Atoms, Nuclei)", class: "Cl-12", prio: "Priority A" },
+        { id: "p3", name: "Current Electricity & Electrical Instruments", class: "Cl-12", prio: "Priority A" },
+        { id: "p4", name: "Ray Optics & Optical Instruments", class: "Cl-12", prio: "Priority A" },
+        { id: "p5", name: "Thermodynamics & KTG (Physics)", class: "Cl-11", prio: "Priority A" },
+        { id: "p6", name: "Magnetic Effects of Current & Magnetism", class: "Cl-12", prio: "Priority A" },
+        { id: "p7", name: "Rotational Motion (Rigid Body Dynamics)", class: "Cl-11", prio: "Priority A" },
+        { id: "p8", name: "Semiconductor Electronics & Logic Gates", class: "Cl-12", prio: "Priority A" },
+        { id: "p9", name: "Work, Power & Energy", class: "Cl-11", prio: "Priority A" },
+        { id: "p10", name: "Electromagnetic Induction (EMI) & AC", class: "Cl-12", prio: "Priority B" },
+        { id: "p11", name: "Gravitation & Satellite Motion", class: "Cl-11", prio: "Priority B" },
+        { id: "p12", name: "Fluid Mechanics & Hydrostatics", class: "Cl-11", prio: "Priority B" },
+        { id: "p13", name: "Wave Optics (Interference & YDSE)", class: "Cl-12", prio: "Priority B" },
+        { id: "p14", name: "Oscillations (Simple Harmonic Motion)", class: "Cl-11", prio: "Priority B" },
+        { id: "p15", name: "Units, Dimensions & Error Analysis", class: "Cl-11", prio: "Priority B" },
+        { id: "p16", name: "Kinematics 1D & 2D Motion", class: "Cl-11", prio: "Priority B" },
+        { id: "p17", name: "Electromagnetic Waves (EM Waves)", class: "Cl-12", prio: "Priority C" },
+        { id: "p18", name: "Laws of Motion & Friction (NLM)", class: "Cl-11", prio: "Priority C" },
+        { id: "p19", name: "Waves & Sound (Doppler Effect)", class: "Cl-11", prio: "Priority C" },
+        { id: "p20", name: "Mechanical Properties of Solids", class: "Cl-11", prio: "Priority C" },
+        { id: "p21", name: "Experimental Physics (Vernier/Screw Gauge)", class: "Cl-12", prio: "Priority C" }
+      ],
+      chemistry: [
+        { id: "c1", name: "General Organic Chemistry (GOC) & Isomerism", class: "Cl-11", prio: "Priority A" },
+        { id: "c2", name: "Coordination Compounds", class: "Cl-12", prio: "Priority A" },
+        { id: "c3", name: "Chemical Thermodynamics & Energetics", class: "Cl-11", prio: "Priority A" },
+        { id: "c4", name: "Hydrocarbons (Alkanes, Alkenes, Alkynes)", class: "Cl-11", prio: "Priority A" },
+        { id: "c5", name: "Atomic Structure & Quantum Numbers", class: "Cl-11", prio: "Priority A" },
+        { id: "c6", name: "Chemical Kinetics", class: "Cl-12", prio: "Priority A" },
+        { id: "c7", name: "d- & f- Block Elements", class: "Cl-12", prio: "Priority A" },
+        { id: "c8", name: "Amines & Organic Nitrogen Compounds", class: "Cl-12", prio: "Priority A" },
+        { id: "c9", name: "Solutions & Colligative Properties", class: "Cl-12", prio: "Priority A" },
+        { id: "c10", name: "Biomolecules", class: "Cl-12", prio: "Priority A" },
+        { id: "c11", name: "Chemical Bonding & Molecular Structure", class: "Cl-11", prio: "Priority A" },
+        { id: "c12", name: "Electrochemistry", class: "Cl-12", prio: "Priority A" },
+        { id: "c13", name: "Mole Concept & Stoichiometry", class: "Cl-11", prio: "Priority B" },
+        { id: "c14", name: "Alcohols, Phenols & Ethers", class: "Cl-12", prio: "Priority B" },
+        { id: "c15", name: "Haloalkanes & Haloarenes", class: "Cl-12", prio: "Priority B" },
+        { id: "c16", name: "Aldehydes & Ketones", class: "Cl-12", prio: "Priority B" },
+        { id: "c17", name: "p-Block Elements (Groups 13-18)", class: "Cl-11", prio: "Priority B" },
+        { id: "c18", name: "Ionic Equilibrium", class: "Cl-11", prio: "Priority B" },
+        { id: "c19", name: "Redox Reactions & Titrations", class: "Cl-11", prio: "Priority C" },
+        { id: "c20", name: "Practical Chemistry & Salt Analysis", class: "Cl-12", prio: "Priority C" },
+        { id: "c21", name: "Carboxylic Acids & Derivatives", class: "Cl-12", prio: "Priority C" }
+      ],
+      maths: [
+        { id: "m1", name: "Vector Algebra", class: "Cl-12", prio: "Priority A" },
+        { id: "m2", name: "Three Dimensional Geometry (3D)", class: "Cl-12", prio: "Priority A" },
+        { id: "m3", name: "Matrices & Determinants", class: "Cl-12", prio: "Priority A" },
+        { id: "m4", name: "Definite Integration & Properties", class: "Cl-12", prio: "Priority A" },
+        { id: "m5", name: "Sequence & Series", class: "Cl-11", prio: "Priority A" },
+        { id: "m6", name: "Differential Equations", class: "Cl-12", prio: "Priority A" },
+        { id: "m7", name: "Binomial Theorem", class: "Cl-11", prio: "Priority A" },
+        { id: "m8", name: "Probability (Bayes' Theorem & Trials)", class: "Cl-12", prio: "Priority A" },
+        { id: "m9", name: "Complex Numbers & Quadratics", class: "Cl-11", prio: "Priority A" },
+        { id: "m10", name: "Sets, Relations & Functions", class: "Cl-11", prio: "Priority A" },
+        { id: "m11", name: "Permutations & Combinations (PNC)", class: "Cl-11", prio: "Priority A" },
+        { id: "m12", name: "Area Under Curves (AUC)", class: "Cl-12", prio: "Priority B" },
+        { id: "m13", name: "Straight Lines & Family of Lines", class: "Cl-11", prio: "Priority B" },
+        { id: "m14", name: "Circles & Systems of Circles", class: "Cl-11", prio: "Priority B" },
+        { id: "m15", name: "Parabola, Ellipse & Hyperbola", class: "Cl-11", prio: "Priority B" },
+        { id: "m16", name: "Continuity & Differentiability", class: "Cl-12", prio: "Priority B" },
+        { id: "m17", name: "Application of Derivatives (AOD)", class: "Cl-12", prio: "Priority B" },
+        { id: "m18", name: "Statistics", class: "Cl-11", prio: "Priority B" },
+        { id: "m19", name: "Limits & L'Hopital Rule", class: "Cl-11", prio: "Priority C" },
+        { id: "m20", name: "Inverse Trigonometric Functions (ITF)", class: "Cl-12", prio: "Priority C" },
+        { id: "m21", name: "Trigonometric Ratios & Equations", class: "Cl-11", prio: "Priority C" },
+        { id: "m22", name: "Indefinite Integration", class: "Cl-12", prio: "Priority C" }
+      ]
+    };
+
+    /* APPLICATION STATE ENGINE WITH LOCALSTORAGE */
+    let appState = {
+      v: 3,
+      schedule: {},
+      checklist: {},
+      mocks: [
+        { id: 1, name: "Part Test 1 (Phase 1)", date: "2026-11-08", type: "Part-Syllabus", p: 62, c: 58, m: 45, total: 165, err: { c: 3, f: 2, cal: 4, mis: 1, g: 1, t: 2 } }
+      ],
+      backlogs: [
+        { id: 101, title: "Rotational Motion Moment of Inertia PYQs", subj: "Physics", prio: "High", notes: "Watch PW One-shot (1.5h) & solve 20 PYQs", done: false }
+      ],
+      hoursToday: 0,
+      activeSubj: 'physics',
+      activePhaseFilter: 'all',
+      activeBlFilter: 'all',
+      modalDay: null
+    };
+
+    let chartInstance = null;
+
+    function initApp() {
+      const saved = localStorage.getItem('jee2027_brutal_state');
+      if (saved) {
+        try {
+          appState = Object.assign(appState, JSON.parse(saved));
+        } catch(e) { console.error("Error parsing state", e); }
+      }
+
+      startCountdown();
+      renderAllViews();
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem('jee2027_brutal_state', JSON.stringify(appState));
+      } catch(e) { console.error("Error saving state", e); }
+    }
+
+    function reloadPreloadedData() {
+      if (confirm("Reset and refill with default schedule & syllabus checklist data? Custom notes will be reset.")) {
+        localStorage.removeItem('jee2027_brutal_state');
+        location.reload();
+      }
+    }
+
+    function renderAllViews() {
+      renderSchedule();
+      renderChecklist();
+      renderMockHistory();
+      renderBacklogs();
+    }
+
+    /* COUNTDOWN TIMER */
+    function startCountdown() {
+      const target = new Date('2027-01-20T09:00:00+05:30').getTime();
+      function update() {
+        const now = new Date().getTime();
+        const diff = target - now;
+        if (diff <= 0) {
+          document.getElementById('timer-display').innerText = "EXAM IS LIVE";
+          return;
+        }
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
+        document.getElementById('timer-display').innerText = `${d}d ${h.toString().padStart(2,'0')}h ${m.toString().padStart(2,'0')}m ${s.toString().padStart(2,'0')}s`;
+      }
+      update();
+      setInterval(update, 1000);
+    }
+
+    /* SCHEDULE RENDERER WITH FLEXIBLE OVERHAULED TEST DAY CARDS & LEAN TEXT */
+    function filterSchedule(phase) {
+      appState.activePhaseFilter = phase;
+      renderSchedule();
+    }
+
+    function renderSchedule() {
+      const container = document.getElementById('schedule-cards-container');
+      const statusFilter = document.getElementById('schedule-status-filter').value;
+      const query = document.getElementById('schedule-search').value.toLowerCase();
+      container.innerHTML = '';
+
+      FULL_SCHEDULE_DATA.forEach(item => {
+        if (appState.activePhaseFilter !== 'all' && item.phase !== appState.activePhaseFilter) return;
+
+        const dayData = appState.schedule[item.day] || { done: false, phy: false, chem: false, math: false, notes: '' };
+
+        if (statusFilter === 'pending' && dayData.done) return;
+        if (statusFilter === 'completed' && !dayData.done) return;
+        if (statusFilter === 'test' && !item.isTest) return;
+
+        const textStr = `${item.day} ${item.date} ${item.focus} ${item.phy} ${item.chem} ${item.math}`.toLowerCase();
+        if (query && !textStr.includes(query)) return;
+
+        const card = document.createElement('div');
+        
+        if (item.isTest) {
+          // Flexible Neo-Brutalist Test Day Card Layout
+          card.className = `brutal-card p-4 flex flex-col justify-between border-brutalYellow bg-brutalYellow/10 md:col-span-2 lg:col-span-3`;
+          card.innerHTML = `
+            <div>
+              <div class="flex flex-wrap justify-between items-center mb-3 pb-2 border-b-2 border-white gap-2">
+                <div class="flex items-center space-x-2">
+                  <span class="font-mono font-black text-sm bg-brutalYellow text-black px-2 py-0.5 border border-white">DAY ${item.day.toString().padStart(2, '0')} — MOCK TEST DAY</span>
+                  <span class="text-xs font-mono text-slate-300 font-bold">${item.date}</span>
+                </div>
+                <span class="text-xs font-mono font-black px-2 py-0.5 bg-brutalPink text-white border border-white">3 HOURS • 300 MARKS</span>
+              </div>
+
+              <div class="mb-3">
+                <h4 class="text-xs font-mono font-black text-brutalYellow uppercase tracking-wider mb-1"><i class="fa-solid fa-flag-checkered mr-1"></i> ${item.focus}</h4>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs mb-3">
+                <div class="bg-[#12161F] p-2.5 border border-slate-600 rounded space-y-1">
+                  <span class="text-brutalCyan font-bold block text-[10px] uppercase">1. Test Execution</span>
+                  <p class="text-slate-200 text-[11px] leading-snug">${item.phy}</p>
+                </div>
+                <div class="bg-[#12161F] p-2.5 border border-slate-600 rounded space-y-1">
+                  <span class="text-brutalYellow font-bold block text-[10px] uppercase">2. Error Classification</span>
+                  <p class="text-slate-200 text-[11px] leading-snug">${item.chem}</p>
+                </div>
+                <div class="bg-[#12161F] p-2.5 border border-slate-600 rounded space-y-1">
+                  <span class="text-brutalPink font-bold block text-[10px] uppercase">3. Ongoing Learning Block</span>
+                  <p class="text-slate-200 text-[11px] leading-snug">${item.math}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-800 flex items-center justify-between font-mono">
+              <button onclick="openNotesModal(${item.day})" class="text-xs text-slate-300 hover:text-brutalYellow flex items-center gap-1 font-bold">
+                <i class="fa-regular fa-note-sticky"></i> <span>${dayData.notes ? 'View Analysis Note' : 'Add Analysis Note'}</span>
+              </button>
+              <label class="flex items-center space-x-1.5 cursor-pointer">
+                <span class="text-xs font-bold ${dayData.done ? 'text-brutalGreen' : 'text-slate-300'}">Test & Analysis Completed</span>
+                <input type="checkbox" ${dayData.done ? 'checked' : ''} onchange="toggleDayMaster(${item.day})">
+              </label>
+            </div>
+          `;
+        } else {
+          // Standard Flexible Study Day Card Layout
+          card.className = `brutal-card p-3.5 flex flex-col justify-between ${dayData.done ? 'border-brutalGreen bg-brutalGreen/10' : 'bg-[#1E2330]'}`;
+          card.innerHTML = `
+            <div>
+              <div class="flex justify-between items-center mb-2 pb-2 border-b-2 border-white">
+                <div class="flex items-center space-x-2">
+                  <span class="font-mono font-black text-xs text-brutalYellow">DAY ${item.day.toString().padStart(2, '0')}</span>
+                  <span class="text-[10px] font-mono text-slate-400">${item.date}</span>
+                </div>
+                <div class="flex items-center space-x-1">
+                  <span class="text-[9px] font-black px-1.5 py-0.2 bg-brutalCyan text-black border border-white">${item.focus}</span>
+                  <span class="text-[9px] font-black px-1 py-0.2 bg-white text-black font-mono">[${item.wl}]</span>
+                </div>
+              </div>
+
+              <div class="space-y-2 text-xs font-mono my-2">
+                <div class="bg-[#12161F] p-2 rounded border border-slate-700">
+                  <span class="text-brutalCyan font-bold block text-[10px] uppercase mb-0.5"><i class="fa-solid fa-atom mr-1"></i> Physics Focus</span>
+                  <p class="text-slate-200 text-[11px] leading-tight ${dayData.phy ? 'line-through text-slate-500' : ''}">${item.phy}</p>
+                  <div class="mt-1.5 flex items-center justify-end">
+                    <label class="flex items-center space-x-1 cursor-pointer text-[10px]">
+                      <span class="text-slate-300">Done</span>
+                      <input type="checkbox" ${dayData.phy ? 'checked' : ''} onchange="toggleDaySubtask(${item.day}, 'phy')">
+                    </label>
+                  </div>
+                </div>
+
+                <div class="bg-[#12161F] p-2 rounded border border-slate-700">
+                  <span class="text-brutalYellow font-bold block text-[10px] uppercase mb-0.5"><i class="fa-solid fa-flask mr-1"></i> Chemistry Focus</span>
+                  <p class="text-slate-200 text-[11px] leading-tight ${dayData.chem ? 'line-through text-slate-500' : ''}">${item.chem}</p>
+                  <div class="mt-1.5 flex items-center justify-end">
+                    <label class="flex items-center space-x-1 cursor-pointer text-[10px]">
+                      <span class="text-slate-300">Done</span>
+                      <input type="checkbox" ${dayData.chem ? 'checked' : ''} onchange="toggleDaySubtask(${item.day}, 'chem')">
+                    </label>
+                  </div>
+                </div>
+
+                <div class="bg-[#12161F] p-2 rounded border border-slate-700">
+                  <span class="text-brutalPink font-bold block text-[10px] uppercase mb-0.5"><i class="fa-solid fa-square-root-variable mr-1"></i> Maths Focus</span>
+                  <p class="text-slate-200 text-[11px] leading-tight ${dayData.math ? 'line-through text-slate-500' : ''}">${item.math}</p>
+                  <div class="mt-1.5 flex items-center justify-end">
+                    <label class="flex items-center space-x-1 cursor-pointer text-[10px]">
+                      <span class="text-slate-300">Done</span>
+                      <input type="checkbox" ${dayData.math ? 'checked' : ''} onchange="toggleDaySubtask(${item.day}, 'math')">
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-2 mt-1 border-t border-slate-800 flex items-center justify-between font-mono">
+              <button onclick="openNotesModal(${item.day})" class="text-[10px] text-slate-400 hover:text-brutalYellow flex items-center gap-1 font-bold">
+                <i class="fa-regular fa-note-sticky"></i> <span>${dayData.notes ? 'View Note' : 'Add Note'}</span>
+              </button>
+              <label class="flex items-center space-x-1 cursor-pointer">
+                <span class="text-[10px] font-bold ${dayData.done ? 'text-brutalGreen' : 'text-slate-400'}">Day Complete</span>
+                <input type="checkbox" ${dayData.done ? 'checked' : ''} onchange="toggleDayMaster(${item.day})">
+              </label>
+            </div>
+          `;
+        }
+
+        container.appendChild(card);
+      });
+    }
+
+    function toggleDaySubtask(day, key) {
+      if (!appState.schedule[day]) appState.schedule[day] = { done: false, phy: false, chem: false, math: false, notes: '' };
+      appState.schedule[day][key] = !appState.schedule[day][key];
+      const d = appState.schedule[day];
+      if (d.phy && d.chem && d.math) d.done = true;
+      saveState();
+      renderSchedule();
+    }
+
+    function toggleDayMaster(day) {
+      if (!appState.schedule[day]) appState.schedule[day] = { done: false, phy: false, chem: false, math: false, notes: '' };
+      const val = !appState.schedule[day].done;
+      appState.schedule[day].done = val;
+      appState.schedule[day].phy = val;
+      appState.schedule[day].chem = val;
+      appState.schedule[day].math = val;
+      saveState();
+      renderSchedule();
+    }
+
+    function openNotesModal(day) {
+      appState.modalDay = day;
+      const d = appState.schedule[day] || {};
+      document.getElementById('modal-day-title').innerText = `Day ${day} Study Notes`;
+      document.getElementById('modal-notes-text').value = d.notes || '';
+      document.getElementById('notes-modal').classList.remove('hidden');
+    }
+
+    function closeNotesModal() {
+      document.getElementById('notes-modal').classList.add('hidden');
+    }
+
+    function saveDayNotes() {
+      const day = appState.modalDay;
+      if (!appState.schedule[day]) appState.schedule[day] = { done: false, phy: false, chem: false, math: false, notes: '' };
+      appState.schedule[day].notes = document.getElementById('modal-notes-text').value;
+      saveState();
+      closeNotesModal();
+      renderSchedule();
+    }
+
+    /* CHECKLIST RENDERER */
+    function switchSubject(subj) {
+      appState.activeSubj = subj;
+      document.querySelectorAll('.subj-btn').forEach(btn => {
+        btn.classList.remove('bg-brutalCyan', 'bg-brutalYellow', 'bg-brutalPink', 'text-black');
+        btn.classList.add('bg-slate-800', 'text-white');
+      });
+      const activeBtn = document.getElementById(`subj-btn-${subj}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-slate-800', 'text-white');
+        activeBtn.classList.add('bg-brutalCyan', 'text-black');
+      }
+      renderChecklist();
+    }
+
+    function renderChecklist() {
+      const tbody = document.getElementById('checklist-table-body');
+      const prioFilter = document.getElementById('checklist-priority-filter').value;
+      const query = document.getElementById('checklist-search').value.toLowerCase();
+      tbody.innerHTML = '';
+
+      FULL_CHECKLIST_DATA[appState.activeSubj].forEach(item => {
+        if (prioFilter !== 'all' && item.prio !== prioFilter) return;
+        if (query && !item.name.toLowerCase().includes(query)) return;
+
+        const st = appState.checklist[item.id] || { theory: false, notes: false, pyq: false, rev1: false, rev2: false, test: false, strength: 1 };
+
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-white/5 transition";
+
+        tr.innerHTML = `
+          <td class="p-2.5 font-bold text-white">${item.name}</td>
+          <td class="p-2.5 text-center"><span class="px-1.5 py-0.2 text-[9px] font-mono border border-white ${item.class === 'Cl-12' ? 'bg-brutalCyan text-black' : 'bg-brutalYellow text-black'} font-black">${item.class}</span></td>
+          <td class="p-2.5 text-center"><span class="px-1.5 py-0.2 text-[9px] font-black border border-white ${item.prio === 'Priority A' ? 'bg-brutalGreen text-black' : item.prio === 'Priority B' ? 'bg-brutalYellow text-black' : 'bg-slate-700 text-white'}">${item.prio}</span></td>
+          <td class="p-2.5 text-center"><input type="checkbox" ${st.theory ? 'checked' : ''} onchange="toggleCheckItem('${item.id}', 'theory')"></td>
+          <td class="p-2.5 text-center"><input type="checkbox" ${st.notes ? 'checked' : ''} onchange="toggleCheckItem('${item.id}', 'notes')"></td>
+          <td class="p-2.5 text-center"><input type="checkbox" ${st.pyq ? 'checked' : ''} onchange="toggleCheckItem('${item.id}', 'pyq')"></td>
+          <td class="p-2.5 text-center"><input type="checkbox" ${st.rev1 ? 'checked' : ''} onchange="toggleCheckItem('${item.id}', 'rev1')"></td>
+          <td class="p-2.5 text-center"><input type="checkbox" ${st.rev2 ? 'checked' : ''} onchange="toggleCheckItem('${item.id}', 'rev2')"></td>
+          <td class="p-2.5 text-center"><input type="checkbox" ${st.test ? 'checked' : ''} onchange="toggleCheckItem('${item.id}', 'test')"></td>
+          <td class="p-2.5 text-center">
+            <div class="flex items-center justify-center space-x-1">
+              ${[1, 2, 3, 4, 5].map(lvl => `
+                <span onclick="setChapterStrength('${item.id}', ${lvl})" class="strength-pip ${lvl <= st.strength ? (st.strength >= 4 ? 'bg-brutalGreen' : st.strength >= 3 ? 'bg-brutalCyan' : 'bg-brutalYellow') : 'bg-[#12161F]'}"></span>
+              `).join('')}
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function toggleCheckItem(id, key) {
+      if (!appState.checklist[id]) appState.checklist[id] = { theory: false, notes: false, pyq: false, rev1: false, rev2: false, test: false, strength: 1 };
+      appState.checklist[id][key] = !appState.checklist[id][key];
+      const st = appState.checklist[id];
+      let cnt = 0;
+      if (st.theory) cnt++; if (st.notes) cnt++; if (st.pyq) cnt++; if (st.rev1) cnt++; if (st.rev2 || st.test) cnt++;
+      st.strength = Math.max(1, cnt);
+      saveState();
+      renderChecklist();
+    }
+
+    function setChapterStrength(id, level) {
+      if (!appState.checklist[id]) appState.checklist[id] = { theory: false, notes: false, pyq: false, rev1: false, rev2: false, test: false, strength: 1 };
+      appState.checklist[id].strength = level;
+      saveState();
+      renderChecklist();
+    }
+
+    /* MOCK ENGINE */
+    function saveMockTest(e) {
+      e.preventDefault();
+      const p = parseInt(document.getElementById('mock-p').value) || 0;
+      const c = parseInt(document.getElementById('mock-c').value) || 0;
+      const m = parseInt(document.getElementById('mock-m').value) || 0;
+
+      appState.mocks.push({
+        id: Date.now(),
+        name: document.getElementById('mock-name').value,
+        date: document.getElementById('mock-date').value,
+        type: document.getElementById('mock-type').value,
+        p, c, m, total: p + c + m,
+        err: {
+          c: parseInt(document.getElementById('err-c').value) || 0,
+          f: parseInt(document.getElementById('err-f').value) || 0,
+          cal: parseInt(document.getElementById('err-cal').value) || 0,
+          mis: parseInt(document.getElementById('err-mis').value) || 0,
+          g: parseInt(document.getElementById('err-g').value) || 0,
+          t: parseInt(document.getElementById('err-t').value) || 0
+        }
+      });
+      saveState();
+      document.getElementById('mock-form').reset();
+      renderMockHistory();
+    }
+
+    function deleteMockEntry(id) {
+      appState.mocks = appState.mocks.filter(m => m.id !== id);
+      saveState();
+      renderMockHistory();
+    }
+
+    function renderMockHistory() {
+      const tbody = document.getElementById('mock-history-body');
+      tbody.innerHTML = '';
+
+      appState.mocks.forEach(m => {
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-white/5 transition";
+        tr.innerHTML = `
+          <td class="p-2 text-slate-400">${m.date}</td>
+          <td class="p-2 font-black text-white">${m.name}</td>
+          <td class="p-2 text-slate-300"><span class="px-1.5 py-0.2 bg-black border border-white text-[9px]">${m.type}</span></td>
+          <td class="p-2 text-center text-brutalCyan font-bold">${m.p}</td>
+          <td class="p-2 text-center text-brutalYellow font-bold">${m.c}</td>
+          <td class="p-2 text-center text-brutalPink font-bold">${m.m}</td>
+          <td class="p-2 text-center text-brutalGreen font-black">${m.total}</td>
+          <td class="p-2 text-brutalOrange text-[10px]">C:${m.err.c} | F:${m.err.f} | CAL:${m.err.cal} | MIS:${m.err.mis} | G:${m.err.g} | T:${m.err.t}</td>
+          <td class="p-2 text-center"><button onclick="deleteMockEntry(${m.id})" class="text-brutalPink hover:underline text-xs"><i class="fa-solid fa-trash"></i></button></td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      renderMockChart();
+    }
+
+    function renderMockChart() {
+      const ctx = document.getElementById('mockScoreChart').getContext('2d');
+      if (chartInstance) chartInstance.destroy();
+
+      const labels = appState.mocks.map(m => m.name);
+      const scores = appState.mocks.map(m => m.total);
+
+      chartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels.length > 0 ? labels : ['Mock 1'],
+          datasets: [{
+            label: 'Total Marks (/300)',
+            data: scores.length > 0 ? scores : [165],
+            borderColor: '#FFE600',
+            backgroundColor: 'rgba(255, 230, 0, 0.1)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { min: 0, max: 300, grid: { color: '#334155' }, ticks: { color: '#FFFFFF', font: { family: 'JetBrains Mono' } } },
+            x: { grid: { color: '#334155' }, ticks: { color: '#FFFFFF', font: { family: 'JetBrains Mono' } } }
+          },
+          plugins: { legend: { labels: { color: '#FFFFFF', font: { family: 'Space Grotesk' } } } }
+        }
+      });
+    }
+
+    /* BACKLOG ENGINE */
+    function addBacklogItem(e) {
+      e.preventDefault();
+      appState.backlogs.push({
+        id: Date.now(),
+        title: document.getElementById('bl-title').value,
+        subj: document.getElementById('bl-subject').value,
+        prio: document.getElementById('bl-priority').value,
+        notes: document.getElementById('bl-notes').value,
+        done: false
+      });
+      saveState();
+      document.getElementById('backlog-form').reset();
+      renderBacklogs();
+    }
+
+    function toggleBacklogItem(id) {
+      const b = appState.backlogs.find(x => x.id === id);
+      if (b) { b.done = !b.done; saveState(); renderBacklogs(); }
+    }
+
+    function deleteBacklogItem(id) {
+      appState.backlogs = appState.backlogs.filter(x => x.id !== id);
+      saveState();
+      renderBacklogs();
+    }
+
+    function filterBacklog(f) {
+      appState.activeBlFilter = f;
+      renderBacklogs();
+    }
+
+    function renderBacklogs() {
+      const list = document.getElementById('backlog-items-list');
+      list.innerHTML = '';
+      if (appState.backlogs.length === 0) {
+        list.innerHTML = `<p class="text-xs text-slate-500 py-3 text-center font-mono">No active backlog items recorded.</p>`;
+        return;
+      }
+
+      appState.backlogs.forEach(b => {
+        if (appState.activeBlFilter === 'pending' && b.done) return;
+        if (appState.activeBlFilter === 'done' && !b.done) return;
+
+        const card = document.createElement('div');
+        card.className = `p-2.5 border-2 ${b.done ? 'bg-[#12161F]/60 border-slate-700 opacity-60' : 'bg-[#12161F] border-white'} flex items-start justify-between gap-2 font-mono`;
+
+        card.innerHTML = `
+          <div class="flex items-start space-x-2">
+            <input type="checkbox" ${b.done ? 'checked' : ''} onchange="toggleBacklogItem(${b.id})" class="mt-0.5">
+            <div>
+              <div class="flex items-center space-x-1.5">
+                <span class="text-xs font-bold ${b.done ? 'line-through text-slate-500' : 'text-white'}">${b.title}</span>
+                <span class="text-[9px] px-1 font-black ${b.subj === 'Physics' ? 'bg-brutalCyan text-black' : 'bg-brutalYellow text-black'}">${b.subj}</span>
+                <span class="text-[9px] px-1 font-black ${b.prio === 'High' ? 'bg-brutalPink text-white' : 'bg-brutalYellow text-black'}">${b.prio}</span>
+              </div>
+              ${b.notes ? `<p class="text-[10px] text-slate-300 mt-0.5">${b.notes}</p>` : ''}
+            </div>
+          </div>
+          <button onclick="deleteBacklogItem(${b.id})" class="text-slate-300 hover:text-brutalPink text-xs"><i class="fa-solid fa-trash"></i></button>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    /* NAVIGATION & EXPORT/IMPORT UTILITIES */
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.brutal-btn').forEach(b => {
+        if (b.id && b.id.startsWith('btn-tab-')) {
+          b.classList.remove('bg-brutalYellow', 'text-black');
+          b.classList.add('bg-slate-800', 'text-white');
+        }
+      });
+
+      document.getElementById(tabId).classList.remove('hidden');
+      const activeBtn = document.getElementById(`btn-${tabId}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-slate-800', 'text-white');
+        activeBtn.classList.add('bg-brutalYellow', 'text-black');
+      }
+
+      if (tabId === 'tab-mocks') renderMockChart();
+    }
+
+    function exportData() {
+      const blob = new Blob([JSON.stringify(appState, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `JEE2027_Backup_${new Date().toISOString().slice(0,10)}.json`;
+      a.click();
+    }
+
+    function triggerImport() { document.getElementById('import-file').click(); }
+
+    function importData(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        try {
+          appState = Object.assign(appState, JSON.parse(evt.target.result));
+          saveState();
+          renderAllViews();
+          alert("Progress restored successfully!");
+        } catch(err) { alert("Invalid backup file format."); }
+      };
+      reader.readAsText(file);
+    }
+
+    window.onload = initApp;
+  </script>
+</body>
+</html>
+```
+
+### Key Changes
+1. **Flexibility on Test Days:** Test day cards now render across the entire grid row with 3 distinct procedural steps (*1. Test Execution*, *2. Error Classification*, *3. Recovery Learning Block*) rather than rigid individual task inputs.
+2. **Text Reduction:** Replaced lengthy text blocks across all 75 days with punchy, actionable directives (`Theory` $\rightarrow$ `Practice` $\rightarrow$ `PYQs` $\rightarrow$ `Short Notes`).
+3. **Card Contrast & Visibility:** Ensured cards use high-contrast dark navy (`#1E2330`) with crisp white borders so text and checkboxes remain clearly visible.
